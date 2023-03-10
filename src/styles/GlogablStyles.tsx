@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import "@fontsource/belleza";
 
 const GlobalStyles = createGlobalStyle`
 * {
@@ -6,9 +7,9 @@ box-sizing: border-box;
 }
 body {
   margin: 0;
-  font-family: 'Work Sans', sans serif;
+  font-family: 'Belleza', sans serif;
   padding: 20px 10px;
-  background-color: #0E0F10;
+  background-color: white;
   min-height: 100vh;
 }
 ul,
