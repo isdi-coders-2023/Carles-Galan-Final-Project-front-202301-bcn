@@ -22,6 +22,9 @@ const useUserApi = () => {
       return;
     }
     const { token } = await response.json();
+
+    localStorage.setItem("token", token);
+
     dispatch(loginUserActionCreator(token));
   };
 
