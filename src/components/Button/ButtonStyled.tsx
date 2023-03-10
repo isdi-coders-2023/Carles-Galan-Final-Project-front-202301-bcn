@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const ButtonStyled = styled.button`
-  cursor: pointer;
   font-family: ${(props) => props.theme.mainFont};
   font-size: ${(props) => props.theme.fontSize.mainSize};
   text-transform: uppercase;

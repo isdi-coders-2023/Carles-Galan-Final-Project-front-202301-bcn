@@ -29,6 +29,9 @@ button {
   cursor: pointer;
   border: none;
 }
+input {
+  font-family: inherit;
+}
 h1,
 h2 {
   font-size: 30px;
