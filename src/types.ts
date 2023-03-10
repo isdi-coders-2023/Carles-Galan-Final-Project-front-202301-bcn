@@ -6,7 +6,7 @@ export interface UserState extends User {
   isLogged: boolean;
 }
 
-export interface UserCredentials {
+export interface LoginCredentials {
   username: string;
   password: string;
 }

@@ -9,13 +9,13 @@ describe("Given the loginUser reducer function", () => {
         isLogged: false,
       };
       const expetedUserState: UserState = {
-        token: "iu23",
+        token: "holitoken",
         isLogged: true,
       };
 
       const newUserState = userReducer(
         currentUser,
-        loginUserActionCreator({ token: expetedUserState.token })
+        loginUserActionCreator("holitoken")
       );
 
       expect(newUserState).toStrictEqual(expetedUserState);

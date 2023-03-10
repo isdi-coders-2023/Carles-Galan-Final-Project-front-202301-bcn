@@ -8,3 +8,9 @@ export const handlers = [
     return res(ctx.status(200), ctx.json({ token: "token" }));
   }),
 ];
+
+export const errorHandlers = [
+  rest.post(`${useUserApiUrl}/users/login`, async (req, res, ctx) => {
+    return res(ctx.status(401), ctx.json({ error: "Wrong credentials" }));
+  }),
+];
