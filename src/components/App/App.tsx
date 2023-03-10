@@ -1,11 +1,5 @@
-import Form from "../LoginForm/LoginForm";
-
 const App = (): JSX.Element => {
-  return (
-    <>
-      <Form />
-    </>
-  );
+  return <></>;
 };
 
 export default App;

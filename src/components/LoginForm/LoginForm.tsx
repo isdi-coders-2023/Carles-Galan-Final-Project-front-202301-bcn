@@ -1,10 +1,10 @@
 import { useState } from "react";
-import useUserApi from "../../hook/useUserApi";
+import useUserApi from "../../hooks/useUserApi";
 import { LoginCredentials } from "../../types";
 import Button from "../Button/Button";
 import LoginFormStyled from "./LoginFormStyled";
 
-const Form = () => {
+const LoginForm = () => {
   const { loginUser } = useUserApi();
 
   const [username, setUsername] = useState("");
@@ -77,4 +77,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default LoginForm;
