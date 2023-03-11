@@ -1,4 +1,4 @@
-import showErrorMessage from "../components/Modals/toasts";
+import { showErrorMessage } from "../components/Modals/toasts";
 import { loginUserActionCreator } from "../store/features/user/userSlice";
 import { useAppDispatch } from "../store/hooks";
 import { LoginCredentials } from "../types";
