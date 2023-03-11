@@ -1,4 +1,4 @@
-import { act, screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import renderWithProviders from "../../utils/testUtils/renderWithProviders";
 import LoginForm from "./LoginForm";
@@ -54,15 +54,11 @@ describe("Given the LoginForm component", () => {
       const renderedPasswordInput = screen.getByLabelText(inputPasswordText);
       const renderedbutton = screen.getByRole("button", { name: buttonText });
 
-      await act(
-        async () => await userEvent.type(renderedUsernameInput, "Gemma")
-      );
-
-      await act(
-        async () => await userEvent.type(renderedPasswordInput, "1234567")
-      );
-
-      await act(async () => await userEvent.click(renderedbutton));
+      await waitFor(async () => {
+        await userEvent.type(renderedUsernameInput, "Gemma");
+        await userEvent.type(renderedPasswordInput, "1234567");
+        await userEvent.click(renderedbutton);
+      });
 
       const expectedCall = {
         username: "Gemma",
