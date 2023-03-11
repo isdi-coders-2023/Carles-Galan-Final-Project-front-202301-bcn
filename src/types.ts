@@ -10,3 +10,9 @@ export interface LoginCredentials {
   username: string;
   password: string;
 }
+
+interface UiStructure {
+  isLoading: boolean;
+}
+
+export default UiStructure;
