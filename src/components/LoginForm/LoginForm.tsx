@@ -31,7 +31,6 @@ const LoginForm = () => {
 
   return (
     <LoginFormStyled className="form" onSubmit={handleOnSubmit}>
-      <h1 className="login-form__title">log-in</h1>
       <label className="login-form__label" htmlFor="username">
         username
       </label>
@@ -59,20 +58,7 @@ const LoginForm = () => {
         type="password"
         required
       ></input>
-
       <Button text="log-in" />
-      <div className="login-form__register-section">
-        <span className="login-form__register-text">
-          already have an account?
-        </span>
-        <a
-          className="login-form__register-link"
-          href="register"
-          aria-label="register link"
-        >
-          register here
-        </a>
-      </div>
     </LoginFormStyled>
   );
 };
