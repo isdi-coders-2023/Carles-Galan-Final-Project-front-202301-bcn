@@ -6,12 +6,6 @@ const LoginFormStyled = styled.form`
   gap: 10px;
 
   .login-form {
-    &__title {
-      text-align: center;
-      text-transform: uppercase;
-      width: 100%;
-    }
-
     &__input {
       &__label {
         text-transform: capitalize;
@@ -23,13 +17,6 @@ const LoginFormStyled = styled.form`
     &__register-section {
       display: flex;
       flex-direction: column;
-      text-align: center;
-    }
-
-    &__register-link {
-      display: flex;
-      flex-direction: column;
-      color: #14805a;
       text-align: center;
     }
   }

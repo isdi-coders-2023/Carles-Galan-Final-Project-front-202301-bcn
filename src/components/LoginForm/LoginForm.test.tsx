@@ -11,16 +11,6 @@ jest.mock("../../hooks/useUserApi.ts", () => () => ({
 
 describe("Given the LoginForm component", () => {
   describe("When rendered", () => {
-    test("Then it should show a header with text 'Register for the event'", () => {
-      renderWithProviders(<LoginForm />);
-
-      const renderedTitle = screen.getByRole("heading", {
-        name: "log-in",
-      });
-
-      expect(renderedTitle).toBeInTheDocument();
-    });
-
     test("Then it should show an input field with a label 'username'", () => {
       const inputLabelText = "username";
 
