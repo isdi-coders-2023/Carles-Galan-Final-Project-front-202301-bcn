@@ -1,24 +1,27 @@
+import {} from "../components/Modals/toasts";
 import {
-  showErrorMessage,
-  showSuccesMessage,
-} from "../components/Modals/toasts";
+  setIsLoadingActionCreator,
+  unsetIsLoadingActionCreator,
+} from "../store/features/ui/uiSlice";
 import { loginUserActionCreator } from "../store/features/user/userSlice";
 import { useAppDispatch } from "../store/hooks";
 import { LoginCredentials } from "../types";
+import modal from "../components/Modals/toasts";
+import { errorTypes } from "./types";
 
 const ApiUrl = process.env.REACT_APP_URL_API_USERS;
 const userEndpoint = "/users";
 const loginEndpoint = "/login";
 
-const serverErrorMessage = "Something went wrong";
-const invalidCredentialsErrorMessage = "Invalid credentials";
-const succesMessage = "Login successfully!";
+const { defaultErrorMessage, invalidCredentialsErrorMessage } = errorTypes;
 
 const useUserApi = () => {
   const dispatch = useAppDispatch();
+  const uiDispatch = useAppDispatch();
 
   const loginUser = async (userCredentials: LoginCredentials) => {
     try {
+      uiDispatch(setIsLoadingActionCreator());
       const response = await fetch(`${ApiUrl}${userEndpoint}${loginEndpoint}`, {
         method: "POST",
         headers: {
@@ -26,10 +29,15 @@ const useUserApi = () => {
         },
         body: JSON.stringify(userCredentials),
       });
+      uiDispatch(unsetIsLoadingActionCreator());
 
-      if (!response.ok) {
-        showErrorMessage(invalidCredentialsErrorMessage);
+      if (response.status === 401) {
+        modal("error", invalidCredentialsErrorMessage);
         return;
+      }
+
+      if (response.status === 429) {
+        throw new Error();
       }
 
       const { token } = await response.json();
@@ -37,10 +45,8 @@ const useUserApi = () => {
       localStorage.setItem("token", token);
 
       dispatch(loginUserActionCreator(token));
-
-      showSuccesMessage(succesMessage);
     } catch (error) {
-      showErrorMessage(serverErrorMessage);
+      modal("error", defaultErrorMessage);
     }
   };
 
