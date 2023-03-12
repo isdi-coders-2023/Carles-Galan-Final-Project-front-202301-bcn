@@ -1,4 +1,7 @@
-import { showErrorMessage } from "../components/Modals/toasts";
+import {
+  showErrorMessage,
+  showSuccesMessage,
+} from "../components/Modals/toasts";
 import { loginUserActionCreator } from "../store/features/user/userSlice";
 import { useAppDispatch } from "../store/hooks";
 import { LoginCredentials } from "../types";
@@ -7,7 +10,9 @@ const ApiUrl = process.env.REACT_APP_URL_API_USERS;
 const userEndpoint = "/users";
 const loginEndpoint = "/login";
 
-const errorMessage = "Something went wrong";
+const serverErrorMessage = "Something went wrong";
+const invalidCredentialsErrorMessage = "Invalid credentials";
+const succesMessage = "Login successfully!";
 
 const useUserApi = () => {
   const dispatch = useAppDispatch();
@@ -23,9 +28,8 @@ const useUserApi = () => {
       });
 
       if (!response.ok) {
-        const rejectedCredentialsMessage = "Invalid user credentials";
-
-        throw new Error(rejectedCredentialsMessage);
+        showErrorMessage(invalidCredentialsErrorMessage);
+        return;
       }
 
       const { token } = await response.json();
@@ -33,8 +37,10 @@ const useUserApi = () => {
       localStorage.setItem("token", token);
 
       dispatch(loginUserActionCreator(token));
+
+      showSuccesMessage(succesMessage);
     } catch (error) {
-      showErrorMessage(errorMessage);
+      showErrorMessage(serverErrorMessage);
     }
   };
 

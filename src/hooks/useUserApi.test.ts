@@ -8,29 +8,40 @@ import { server } from "../mocks/server";
 import { errorHandlers } from "../mocks/handlers";
 import { toast } from "react-toastify";
 
-const mockedUser: LoginCredentials = {
+const mockedRightCredentials: LoginCredentials = {
   username: "Lluis",
   password: "123456789",
 };
 
+const mockedWrongCredentials: LoginCredentials = {
+  username: "Lluisdwe",
+  password: "1234wefwef56789",
+};
+
 const spiedDispatch = jest.spyOn(store, "dispatch");
 
-const mockedToastFunction = jest.spyOn(toast, "error");
+const mockedToastErrorFunction = jest.spyOn(toast, "error");
+const mockedToastSuccesFunction = jest.spyOn(toast, "success");
 
 describe("Given the useUserApi function", () => {
   describe("When its called with right credentials", () => {
+    const {
+      result: {
+        current: { loginUser },
+      },
+    } = renderHook(() => useUserApi(), { wrapper: Wrapper });
     test("Then it should call the dispatch with the loginUserAction", async () => {
-      const {
-        result: {
-          current: { loginUser },
-        },
-      } = renderHook(() => useUserApi(), { wrapper: Wrapper });
-
-      await loginUser(mockedUser);
+      await loginUser(mockedRightCredentials);
 
       expect(spiedDispatch).toHaveBeenCalledWith(
         loginUserActionCreator("token")
       );
+    });
+
+    test("Then it should call the showSuccesMessage function", async () => {
+      await loginUser(mockedWrongCredentials);
+
+      expect(mockedToastSuccesFunction).toBeCalled();
     });
   });
 
@@ -46,9 +57,9 @@ describe("Given the useUserApi function", () => {
         },
       } = renderHook(() => useUserApi(), { wrapper: Wrapper });
 
-      await loginUser(mockedUser);
+      await loginUser(mockedWrongCredentials);
 
-      expect(mockedToastFunction).toHaveBeenCalled();
+      expect(mockedToastErrorFunction).toHaveBeenCalled();
     });
   });
 });
