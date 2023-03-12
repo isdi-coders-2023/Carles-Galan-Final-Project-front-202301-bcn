@@ -5,6 +5,10 @@ const GlobalStyles = createGlobalStyle`
 * {
 box-sizing: border-box;
 }
+
+root {
+  height:100%;
+}
 body {
   margin: 0;
   font-family: 'Belleza', sans serif;
