@@ -11,8 +11,6 @@ export interface LoginCredentials {
   password: string;
 }
 
-interface UiStructure {
+export interface UiStructure {
   isLoading: boolean;
 }
-
-export default UiStructure;
