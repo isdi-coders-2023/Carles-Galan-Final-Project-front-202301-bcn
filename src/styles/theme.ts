@@ -6,6 +6,7 @@ const theme: DefaultTheme = {
   secondaryFont: "Acme",
   colors: {
     mainColor: "#C4B73D",
+    secondaryColor: "#D2C128",
     textColor: "#000000",
   },
   fontSize: {

@@ -1,12 +1,12 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRightFromBracket,
   faArrowRightToBracket,
   faHouseChimney,
   faList,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import HeaderStyled from "./HeaderStyles";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
+import HeaderStyled from "./HeaderStyles";
 
 const Header = (): JSX.Element => {
   return (
