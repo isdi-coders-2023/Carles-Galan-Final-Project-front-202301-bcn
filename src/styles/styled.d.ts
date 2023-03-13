@@ -6,6 +6,7 @@ declare module "styled-components" {
     secondaryFont: string;
     colors: {
       mainColor: string;
+      secondaryColor: string;
       textColor: string;
     };
     fontSize: {
